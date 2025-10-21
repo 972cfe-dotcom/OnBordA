@@ -1,0 +1,32 @@
+steps:
+# שלב 1: בצע את בניית ה-Docker
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/saas-backend:$COMMIT_SHA', 'backend']
+  # במקום 'backend' בסוף, נכתוב את שם התיקייה
+  # זה אומר ל-Docker Build להשתמש בתיקיית backend כקונטקסט
+  id: 'Build Backend Image'
+
+# שלב 2: פרוס את האימג' ל-Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - 'run'
+  - 'deploy'
+  - 'saas-backend-service'  # שם השירות שלך ב-Cloud Run
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/saas-backend:$COMMIT_SHA'
+  - '--region'
+  - 'us-central1' # שנה לאזור שאתה רוצה!
+  - '--platform'
+  - 'managed'
+  - '--service-account'
+  - 'sa-backend-firebase@onborda.iam.gserviceaccount.com' # חשבון הריצה (הדייר)
+  - '--allow-unauthenticated' # או '--no-allow-unauthenticated' לפי הצורך
+  id: 'Deploy to Cloud Run'
+
+# הגדרות Build כלליות (התיקון לשגיאת ה-Logs)
+options:
+  # זהו התיקון הקריטי שמגדיר את יומני המערכת
+  # וזה מה שפותר את השגיאה "if 'build.service_account' is specified..."
+  logging: CLOUD_LOGGING_ONLY 
+  # הגדרת חשבון השירות לבנייה (הבנאי)
+  serviceAccount: projects/$PROJECT_ID/serviceAccounts/sa-cloud-run-deployer@onborda.iam.gserviceaccount.com

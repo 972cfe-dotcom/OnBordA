@@ -1,15 +1,15 @@
 // Firebase Configuration
-// Replace these values with your actual Firebase project configuration
-// You can find these in Firebase Console -> Project Settings -> General -> Your apps
+// Get from Firebase Console -> Project Settings -> General -> Your apps
+// IMPORTANT: Replace these with your actual values from Firebase Console!
 
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "YOUR_API_KEY", // Replace with actual API key from Firebase Console
+  authDomain: "onborda.firebaseapp.com",
+  projectId: "onborda",
+  storageBucket: "onborda.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID", // Replace with actual sender ID
+  appId: "YOUR_APP_ID" // Replace with actual app ID
 };
 
-// Backend API URL - Update this after deploying your Cloud Run service
-export const API_URL = process.env.VITE_API_URL || "https://YOUR_CLOUD_RUN_URL";
+// Backend API URL - Will be updated after deploying Cloud Run
+export const API_URL = process.env.VITE_API_URL || "http://localhost:8080";

@@ -1,6 +1,36 @@
 # 📊 OnBordA - מצב הפרויקט הנוכחי
 
-תאריך עדכון: 2025-10-23
+תאריך עדכון: 2025-10-23 (Updated with diagnostics)
+
+## 🔍 ממצאי ניתוח (מהתמונות שהועלו)
+
+### ✅ מה שעובד:
+1. ✅ Firebase Project קיים ופעיל (Blaze plan)
+2. ✅ Authentication מוגדר ב-Firebase
+3. ✅ Firestore Database מוכן
+4. ✅ Service Account קיים: `sa-backend-firebase@onborda.iam.gserviceaccount.com`
+5. ✅ קוד מלא ב-GitHub: `github.com/972cfe-dotcom/OnBordA`
+
+### ❌ בעיות שזוהו:
+
+#### 🔴 בעיה 1: Build Failed - חסרות הרשאות
+```
+Error from Cloud Build:
+- logging.logEntries.list permission missing
+- logging.views.access permission missing
+- Cloud Logging retention expired
+```
+**פתרון:** הרץ `scripts/quick-fix-permissions.sh`
+
+#### 🔴 בעיה 2: Firebase Web App לא נוצר
+- לא נראה Web App רשום ב-Console
+- חסרים: apiKey, messagingSenderId, appId
+**פתרון:** ראה שלב 3 ב-QUICK_FIX_CHECKLIST.md
+
+#### 🔴 בעיה 3: Service Account ללא Keys
+- הטבלה מראה "No keys" בעמודת Key ID
+- צריך JSON key לפריסה
+**פתרון:** ראה שלב 3 ב-QUICK_FIX_CHECKLIST.md
 
 ## ✅ מה הושלם
 

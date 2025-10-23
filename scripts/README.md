@@ -4,7 +4,55 @@
 
 ## 📋 סקריפטים זמינים
 
-### 1. `setup-secrets.sh` - הגדרת Secrets
+### 🆕 סקריפטים חדשים (מומלץ להתחלה!)
+
+#### 1. `diagnose.sh` - אבחון מצב הפרויקט ⭐
+
+בודק את המצב הנוכחי ומציג מה חסר.
+
+**שימוש:**
+```bash
+cd scripts
+./diagnose.sh
+```
+
+**מה הסקריפט בודק:**
+- ✅ CLI tools (gcloud, firebase, npm)
+- ✅ Authentication status
+- ✅ Google Cloud APIs enabled
+- ✅ Service Account permissions
+- ✅ Secrets configuration
+- ✅ Backend deployment
+- ✅ Frontend configuration
+- ✅ Firebase Hosting deployment
+
+**פלט:** דוח מפורט עם כל הבעיות והפתרונות
+
+#### 2. `quick-fix-permissions.sh` - תיקון אוטומטי של הרשאות ⭐
+
+מתקן אוטומטית את כל הבעיות שזוהו בתמונות שהעלית.
+
+**שימוש:**
+```bash
+cd scripts
+./quick-fix-permissions.sh
+```
+
+**מה הסקריפט מתקן:**
+- ✅ מפעיל את כל ה-APIs הנדרשים
+- ✅ מוסיף logging.viewer, logging.logWriter
+- ✅ מוסיף roles/run.admin
+- ✅ מוסיף roles/secretmanager.secretAccessor
+- ✅ מוסיף roles/firebase.admin
+- ✅ מתקן הרשאות Cloud Build Service Account
+
+**זמן: ~2 דקות**
+
+---
+
+### סקריפטים מקוריים
+
+#### 3. `setup-secrets.sh` - הגדרת Secrets
 
 מגדיר את Secret Manager ומעלה את ה-Service Account credentials.
 
@@ -24,7 +72,7 @@ cd scripts
 - `gcloud` CLI מותקן ומחובר
 - Service Account JSON key מוריד מ-Google Cloud Console
 
-### 2. `deploy.sh` - פריסה מלאה
+#### 4. `deploy.sh` - פריסה מלאה
 
 מפרוס את Backend ו/או Frontend.
 
@@ -55,7 +103,50 @@ cd scripts
 - 🚀 מפרוס ל-Firebase Hosting
 - 📋 מציג את ה-URL
 
-## 🚀 תהליך הפריסה המלא
+#### 5. `check-status.sh` - בדיקת סטטוס
+
+בודק אם הכל עובד אחרי הפריסה.
+
+**שימוש:**
+```bash
+cd scripts
+./check-status.sh
+```
+
+---
+
+## 🚀 תהליך הפריסה המלא (מעודכן!)
+
+### תהליך מהיר (מומלץ!)
+
+```bash
+# שלב 0: אבחון
+cd scripts
+./diagnose.sh
+
+# שלב 1: תיקון הרשאות
+./quick-fix-permissions.sh
+
+# שלב 2: צור Firebase Web App (ידני)
+# https://console.firebase.google.com/project/onborda/settings/general
+
+# שלב 3: צור Service Account Key (ידני)
+# https://console.cloud.google.com/iam-admin/serviceaccounts?project=onborda
+
+# שלב 4: הגדר Secrets
+./setup-secrets.sh
+
+# שלב 5: עדכן Frontend Config (ידני)
+# ערוך frontend/src/firebaseConfig.js
+
+# שלב 6: פרוס הכל
+./deploy.sh  # בחר 3 (Both)
+
+# שלב 7: בדיקה
+./check-status.sh
+```
+
+### תהליך מפורט (שלב אחר שלב)
 
 ### שלב 1: הכנה ראשונית
 

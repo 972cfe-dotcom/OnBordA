@@ -65,6 +65,17 @@ A complete, production-ready SaaS application built with Firebase, Cloud Run, an
 
 ## 🚀 Quick Start
 
+### 🎯 Fast Track Setup (Recommended)
+
+**New users start here:**
+
+1. **Read:** `QUICK_FIX_CHECKLIST.md` - 7 simple steps to deploy
+2. **Or:** `COMPLETE_SETUP_GUIDE_HEBREW.md` - Detailed Hebrew guide
+3. **Diagnose:** Run `scripts/diagnose.sh` to check what's missing
+4. **Fix:** Run `scripts/quick-fix-permissions.sh` to auto-fix permissions
+
+**Total time: ~30 minutes** ⏱️
+
 ### Prerequisites
 
 - Node.js 18+
